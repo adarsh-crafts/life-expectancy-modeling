@@ -1,59 +1,54 @@
-# Life Expectancy Analysis & Prediction
+# Life Expectancy Modeling
 
-A data science project analyzing global life expectancy indicators using data from World Health Organization (WHO).  
-The goal is to identify key determinants of life expectancy and build an interpretable linear regression model, supported by a complete data science workflow and an interactive Streamlit dashboard.
+This repository contains a data science project analyzing socioeconomic, demographic, and health-related factors influencing life expectancy using WHO data. The project includes a reproducible workflow for preprocessing, exploratory analysis, feature selection, regression modeling, validation, and deployment through a Streamlit application.
 
----
+## Features
 
-## 1. Project Overview
-This project explores how socioeconomic, health, and mortality indicators influence life expectancy across countries.  
-Using statistical analysis and machine learning, the project identifies the most impactful predictors and provides an interactive interface for exploration.
+* Cleaned and structured World Health Organization (WHO) life expectancy dataset
 
----
+* Systematic preprocessing workflow
 
-## 2. Objectives
-- Understand global patterns affecting life expectancy  
-- Perform data cleaning, EDA, and multicollinearity analysis  
-- Build, evaluate, and interpret a linear regression model  
-- Deploy a Streamlit app for interactive insights and predictions  
+* Multicollinearity checks and feature selection
 
----
+* Regression modeling using statistical and machine learning methods
 
-## 3. Dataset
-**Source:** WHO Life Expectancy Dataset  
-**Rows:** 2,930  
-**Features:** 22 indicators including mortality, immunization, economic metrics, and health factors.
+* Evaluation using standard metrics
 
----
+* Model Validation (coming soon)
 
-## 4. Methodology
-- Exploratory Data Analysis (EDA)  
-- Correlation & Multicollinearity (VIF)  
-- Feature Selection (Forward Selection)  
-- Scaling & Preprocessing  
-- Linear Regression modeling  
-- Regression diagnostics (residuals, Q-Q, homoscedasticity)  
-- Performance evaluation (MAE, MSE, RMSE, R²)
+* Streamlit dashboard for exploration and prediction
 
----
+## Project Structure
+```
+├── app/
+│   └── streamlit_app.py
+├── data/
+├── model/
+    └── lifeexp_linreg.pkl
+├── notebooks/
+    ├── model_development.ipynb
+    ├── model_validation.ipynb (coming soon)
+    └── EDA.ipynb (coming soon)
+├── requirements.txt
+└── README.md
+```
 
-## 5. Key Insights
-- Adult mortality, HIV incidence, schooling, and BMI strongly influence life expectancy  
-- Immunization and nutrition indicators show impactful relationships  
-- Multicollinearity reduced by removing highly correlated variables  
+## Installation
+```
+pip install -r requirements.txt
+```
 
-*(Replace with your own final insights.)*
+Run the Streamlit App
+```
+streamlit run app/app.py
+```
 
----
+## About
 
-## 6. Streamlit App
-An interactive dashboard to:  
-- Explore global indicators  
-- Visualize correlations  
-- View model results  
-- Predict life expectancy  
+This project aims to provide a transparent, reproducible, and interpretable modeling pipeline for understanding key predictors of life expectancy across countries. It is designed with an emphasis on good analytical practice, clarity, and real-world applicability.
 
-Run locally:
-```bash
-streamlit run app.py
-s
+A detailed write-up will be available as a blog post soon.
+
+## License
+
+MIT License [READ](LICENSE)

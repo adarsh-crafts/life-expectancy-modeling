@@ -1,4 +1,6 @@
 venv
+notebooks/model_validation.ipynb
+notebooks/EDA.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

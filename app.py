@@ -9,8 +9,8 @@ import plotly.express as px
 # 1. SETUP & CONFIGURATION
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="Country's Life Expectancy Analysis",
-    page_icon="🏥",
+    page_title="WHO Life Expectancy Dashboard",
+    page_icon="🌐",
     layout="wide"
 )
 
@@ -84,7 +84,7 @@ for key, val in default_values.items():
 # -----------------------------------------------------------------------------
 if st.session_state.page == 'home':
     # 1. Header & Title
-    st.title("🏥 WHO Life Expectancy Analysis Dashboard")
+    st.title("🌐 WHO Life Expectancy Dashboard")
     st.markdown("### 🌍 Global Health Overview (2015 Snapshot)")
     
     # Load data for the dashboard view
@@ -308,27 +308,57 @@ elif st.session_state.page == 'policy_simulation':
             fig.update_layout(height=250, margin=dict(l=10, r=10, t=10, b=10)) 
             st.plotly_chart(fig, use_container_width=True)
             
-            # 3. Interpretation Logic
-            st.markdown("### 📋 AI Analysis")
+            # -------------------------------------------------------------
+            # 3. SMARTER AI ANALYSIS (Checks inputs, not just the output)
+            # -------------------------------------------------------------
+            st.markdown("### 📋 AI Strategic Insights")
+            
+            # A. Determine Overall Status
             if pred < 60:
-                st.error("""
-                **Status: Critical (Low Development)**
-                * **Insight:** Predicted age is significantly below global averages.
-                * **Drivers:** Likely low schooling, low GDP, or high HIV incidence.
-                * **Recommendation:** Immediate intervention in healthcare infrastructure required.
-                """)
+                st.error(f"**Status: Critical ({pred:.1f} Years)**\n\nLife expectancy is dangerously low. Immediate policy intervention required.")
             elif pred < 75:
-                st.warning("""
-                **Status: Developing (Medium Development)**
-                * **Insight:** Metrics are consistent with developing nations.
-                * **Recommendation:** Focus on GDP growth and increasing vaccination coverage.
-                """)
+                st.warning(f"**Status: Developing ({pred:.1f} Years)**\n\nConsistent with developing nations. Focused improvements needed to reach global leaders.")
             else:
-                st.success("""
-                **Status: Stable (High Development)**
-                * **Insight:** Metrics align with developed nations (High BMI/Schooling/GDP).
-                * **Recommendation:** Focus on preventative care and maintaining current economic policy.
-                """)
+                st.success(f"**Status: Strong ({pred:.1f} Years)**\n\nMetrics align with high-income, developed nations.")
+
+            # B. Analyze SPECIFIC Drivers (The "Smart" Part)
+            bottlenecks = []
+            strengths = []
+
+            # Check HIV
+            if hiv_incidents > 1.5:
+                bottlenecks.append(f"🔴 **HIV Incidence ({hiv_incidents}/1k):** High disease burden is significantly reducing longevity. Prioritize ART coverage.")
+            elif hiv_incidents < 0.2:
+                strengths.append(f"🟢 **HIV Control:** Very low incidence contributes positively.")
+
+            # Check Schooling
+            if schooling < 10.0:
+                bottlenecks.append(f"🔴 **Education ({schooling} yrs):** Below global secondary standards. Education correlates strongly with health awareness.")
+            elif schooling > 15.0:
+                strengths.append(f"🟢 **Education:** High schooling years drive better health outcomes.")
+
+            # Check Vaccine
+            if vaccine < 85.0:
+                bottlenecks.append(f"🔴 **Immunization ({vaccine}%):** Gaps in vaccine coverage leave population vulnerable to preventable outbreaks.")
+            
+            # Check GDP
+            if gdp_capita < 2000:
+                bottlenecks.append(f"🟠 **Economic Factors:** Low GDP per capita limits healthcare infrastructure investment.")
+
+            # C. Render Recommendations
+            if bottlenecks:
+                st.subheader("⚠️ Priority Interventions")
+                for item in bottlenecks:
+                    st.markdown(item)
+            
+            if strengths and pred > 70:
+                st.subheader("✅ Key Strengths")
+                for item in strengths:
+                    st.markdown(item)
+            
+            if not bottlenecks and not strengths:
+                st.info("Metrics are balanced. No extreme outliers detected.")
+
         else:
             st.info("👈 Select a profile or adjust parameters and click 'Run Simulation'.")
 
@@ -521,9 +551,11 @@ st.divider()
 footer_col1, footer_col2 = st.columns(2)
 with footer_col1:
     st.markdown("""
-    * Developed by Adarsh | MSc Data Science | © 2025
+    * Developed by Adarsh | © 2025
     * **Data Source:** World Health Organization (WHO)
     * **Model:** Linear Regression (v1.2 - Updated Features)
+    * **GitHub:** https://github.com/adarsh-crafts/life-expectancy-modeling
+            
     """)
 with footer_col2:
     st.caption("""

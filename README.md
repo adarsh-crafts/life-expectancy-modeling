@@ -2,7 +2,7 @@
 
 This repository contains a data science project analyzing socioeconomic, demographic, and health-related factors influencing life expectancy using WHO data. The project includes a reproducible workflow for preprocessing, exploratory analysis, feature selection, regression modeling, validation, and deployment through a Streamlit application.
 
-## Dashboard Preview [[MORE IMAGES]]()
+## Dashboard Preview [[MORE IMAGES]](app/README.md)
 <p align="center">
   <img src="images\dash-1.png" width="700">
 </p>
